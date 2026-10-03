@@ -499,3 +499,31 @@
     padding: 0.75rem 1rem;
   }
 }
+
+/* Security & Anti-Cheat Styles */
+body.exam-security-active {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  -webkit-touch-callout: none !important;
+}
+
+body.exam-security-active * {
+  -webkit-user-drag: none !important;
+}
+
+/* Violation Warning Modal */
+.violation-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(220, 38, 38, 0.15);
+  border: 1px solid rgba(220, 38, 38, 0.4);
+  color: #f87171;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+

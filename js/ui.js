@@ -287,6 +287,13 @@ export const UI = {
     setElText('resultTimeTakenTag', `Time Taken: ${formatTime(results.timeTakenSeconds)}`);
     setElText('resultAccuracyTag', `Accuracy: ${results.accuracy}%`);
 
+    const secCount = results.securitySummary?.violationCount || 0;
+    if (secCount === 0) {
+      setElText('resultSecurityTag', '🛡️ Integrity: 0 Warnings (Clean)');
+    } else {
+      setElText('resultSecurityTag', `⚠️ Integrity: ${secCount} Security Flag${secCount > 1 ? 's' : ''}`);
+    }
+
     // KPI Cards
     setElText('kpiTotalScore', `${results.totalScore} / ${results.maxScore}`);
     setElText('kpiAccuracy', `${results.accuracy}%`);

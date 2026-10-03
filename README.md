@@ -43,6 +43,13 @@ node server.js
   - Options: Press `1`, `2`, `3`, `4` or `A`, `B`, `C`, `D`
   - Navigation: `N` or `Right Arrow` for Next, `P` or `Left Arrow` for Previous
   - Review: `M` for Mark for Review, `C` for Clear Response
+- **Anti-Cheat & Proctoring Security Guard**:
+  - Disables text selection and right-click context menu.
+  - Blocks clipboard operations (`Ctrl+C`, `Ctrl+V`, `Ctrl+X`).
+  - Intercepts DevTools / Inspect shortcuts (`F12`, `Ctrl+Shift+I`, `Ctrl+U`).
+  - Tracks tab-switching and window defocusing with strike counter.
+  - Auto-submits on 3 strike violations with audit record in results.
+  - Optional one-click full-screen mode.
 
 ### 2. Flexible Test Upload & Authoring
 - **JSON File Upload**: Drag-and-drop or select any `.json` mock test file.

@@ -7,18 +7,21 @@ import { SAMPLE_TESTS, SAMPLE_TEMPLATE_JSON } from './data.js';
 import { parseTestJson, parsePlainTextToTest } from './parser.js';
 import { examState, QUESTION_STATUS } from './state.js';
 import { ExamTimer } from './timer.js';
+import { ExamSecurity } from './security.js';
 import { UI } from './ui.js';
 
 class MockExamApp {
   constructor() {
     this.selectedTest = null;
     this.timer = null;
+    this.security = null;
     this.currentReviewFilter = 'all';
     this.latestResults = null;
   }
 
   init() {
     this.setupTimer();
+    this.setupSecurity();
     this.renderSampleTests();
     this.bindGlobalEvents();
     this.bindExamControls();
@@ -51,6 +54,26 @@ class MockExamApp {
       onExpire: () => {
         UI.showToast("Time's up! Submitting your exam automatically...", 'error', 4000);
         this.submitExam(true);
+      }
+    });
+  }
+
+  setupSecurity() {
+    this.security = new ExamSecurity({
+      maxViolations: 3,
+      onViolation: (record, count, max) => {
+        UI.showToast(`⚠️ Security Warning (${count}/${max}): ${record.message}`, 'error', 4500);
+        const badge = document.getElementById('headerViolationBadge');
+        if (badge) {
+          badge.style.display = 'inline-flex';
+          badge.textContent = `⚠️ Warnings: ${count}/${max}`;
+        }
+      },
+      onMaxViolationsExceeded: (record) => {
+        UI.showToast("Maximum security violations exceeded! Submitting exam...", 'error', 6000);
+        setTimeout(() => {
+          this.submitExam(true);
+        }, 1200);
       }
     });
   }
@@ -144,6 +167,25 @@ class MockExamApp {
 
     // Start countdown timer
     this.timer.start(examState.totalDurationSeconds);
+
+    // Configure security / anti-cheat
+    const enableProctoring = document.getElementById('checkEnableProctoring')?.checked !== false;
+    const enableFullscreen = document.getElementById('checkFullscreen')?.checked === true;
+
+    const violationBadge = document.getElementById('headerViolationBadge');
+    if (violationBadge) {
+      violationBadge.style.display = enableProctoring ? 'inline-flex' : 'none';
+      violationBadge.textContent = '⚠️ Warnings: 0/3';
+    }
+
+    if (enableProctoring && this.security) {
+      this.security.enable();
+      if (enableFullscreen) {
+        this.security.requestFullscreen();
+      }
+    } else if (this.security) {
+      this.security.disable();
+    }
 
     // Show Exam View
     UI.showView('view-exam');
@@ -253,7 +295,14 @@ class MockExamApp {
 
   submitExam(isAutoExpiry = false) {
     this.timer.stop();
+
+    if (this.security) {
+      this.security.disable();
+      this.security.exitFullscreen();
+    }
+
     const results = examState.calculateResults();
+    results.securitySummary = this.security ? this.security.getSummary() : { violationCount: 0 };
     this.latestResults = results;
 
     UI.renderResults(results);
@@ -280,6 +329,10 @@ class MockExamApp {
     // Back to Home Button
     document.getElementById('btnBackToHome')?.addEventListener('click', () => {
       this.timer.stop();
+      if (this.security) {
+        this.security.disable();
+        this.security.exitFullscreen();
+      }
       UI.showView('view-setup');
     });
 
