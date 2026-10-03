@@ -1,0 +1,9 @@
+{
+  "name": "placement-mock-exam-simulator",
+  "version": "1.0.0",
+  "description": "Modular placement mock test simulator with TCS iON style layout, question palette, countdown timer, and JSON upload.",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  }
+}

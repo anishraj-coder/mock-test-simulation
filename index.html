@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Placement Mock Test Simulator | TCS iON & Accenture Pattern</title>
+  <meta name="description" content="Modular, realistic placement mock test simulator with question palette, countdown timer, JSON upload, and comprehensive solution explanations.">
+  
+  <!-- Modern Typography: Google Fonts Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Modular Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/exam.css">
+  <link rel="stylesheet" href="css/results.css">
+</head>
+<body>
+  <div class="app-viewport">
+
+    <!-- ========================================== -->
+    <!-- VIEW 1: HOME & TEST SETUP                  -->
+    <!-- ========================================== -->
+    <main id="view-setup" class="view-section active">
+      <div class="container">
+        <!-- Hero Header -->
+        <header class="setup-hero">
+          <div class="brand-logo">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+            </svg>
+            <span style="font-weight: 700; font-size: 0.88rem; color: var(--primary); letter-spacing: 0.05em; text-transform: uppercase;">ExamSim Pro &bull; Placement Edition</span>
+          </div>
+          <h1>Placement Mock Test Simulator</h1>
+          <p>Experience realistic assessment conditions modeled on TCS iON &amp; Accenture tests. Choose a pre-loaded test, upload your own JSON, or paste questions.</p>
+        </header>
+
+        <!-- Candidate Registration Strip -->
+        <div style="background:#ffffff; border:1px solid var(--border-light); border-radius:var(--radius-md); padding:1.25rem 1.75rem; margin-bottom:2rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; box-shadow:var(--shadow-xs);">
+          <div style="display:flex; align-items:center; gap:0.75rem;">
+            <div style="width:38px; height:38px; border-radius:50%; background:var(--primary-light); color:var(--primary); display:flex; align-items:center; justify-content:center; font-weight:700;">
+              👤
+            </div>
+            <div>
+              <div style="font-size:0.8rem; font-weight:600; color:var(--text-muted); text-transform:uppercase;">Candidate Profile</div>
+              <input type="text" id="inputCandidateName" value="Candidate #2026" placeholder="Enter your full name" style="border:1px solid var(--border-strong); padding:0.35rem 0.75rem; border-radius:var(--radius-sm); font-size:0.95rem; font-weight:600; color:var(--text-main); width:240px; margin-top:0.25rem;">
+            </div>
+          </div>
+          <div style="display:flex; gap:0.75rem;">
+            <button class="btn btn-secondary btn-sm" id="btnOpenJsonEditor">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+              JSON Editor / Paste
+            </button>
+            <button class="btn btn-secondary btn-sm" id="btnOpenTextParser">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+              Quick Text Parser
+            </button>
+            <button class="btn btn-secondary btn-sm" id="btnDownloadTemplate" title="Download sample JSON template">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              Download Schema JSON
+            </button>
+          </div>
+        </div>
+
+        <!-- Setup Grid -->
+        <div class="setup-grid">
+          <!-- Left: Pre-loaded Mock Tests -->
+          <div class="setup-card">
+            <div class="setup-card-title">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+              <span>Preloaded Mock Assessments</span>
+            </div>
+            <div class="setup-card-subtitle">Select a ready-to-test placement paper or diagnostic exam:</div>
+            
+            <div class="sample-tests-list" id="sampleTestsList">
+              <!-- Dynamically populated from data.js -->
+            </div>
+          </div>
+
+          <!-- Right: Upload JSON or Test Details -->
+          <div class="setup-card">
+            <div class="setup-card-title">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--secondary)" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+              <span>Upload Custom Mock Test</span>
+            </div>
+            <div class="setup-card-subtitle">Import your own questions, options, and explanations in JSON format:</div>
+
+            <!-- Drag and Drop Zone -->
+            <div class="dropzone" id="fileDropzone">
+              <div class="dropzone-icon">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+              </div>
+              <div class="dropzone-title">Drag &amp; Drop your test .json file here</div>
+              <div class="dropzone-desc">Supports section-based or single-list formats with answer keys &amp; explanations</div>
+              <div class="dropzone-actions">
+                <label for="testFileInput" class="btn btn-secondary btn-sm" style="cursor:pointer;">Browse Files</label>
+                <input type="file" id="testFileInput" accept=".json" style="display:none;">
+              </div>
+            </div>
+
+            <!-- Selected Test Summary Box -->
+            <div style="margin-top:1.5rem; padding:1.25rem; background:#f8fafc; border:1px solid var(--border-light); border-radius:var(--radius-md);">
+              <div style="font-size:0.78rem; text-transform:uppercase; letter-spacing:0.04em; color:var(--text-muted); font-weight:700; margin-bottom:0.35rem;">Selected Test Ready to Launch</div>
+              <h4 id="selectedTestTitle" style="font-size:1.1rem; color:var(--text-main); font-weight:700; margin-bottom:0.35rem;">Accenture Placement Assessment</h4>
+              <p id="selectedTestDesc" style="font-size:0.88rem; color:var(--text-muted); margin-bottom:0.85rem;">Comprehensive placement mock covering Reasoning, Technical Pseudocode, and Verbal Ability.</p>
+              <div id="selectedTestMeta" style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+                <!-- Badges dynamically rendered -->
+              </div>
+            </div>
+
+            <!-- Start Exam CTA -->
+            <div style="margin-top:1.75rem;">
+              <button class="btn btn-primary btn-lg" id="btnStartExam" style="width:100%;">
+                <span>Start Mock Test Simulation</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </button>
+              <div style="text-align:center; font-size:0.78rem; color:var(--text-muted); margin-top:0.6rem;">
+                Keyboard shortcuts enabled: Press <strong>1-4</strong> or <strong>A-D</strong> for options, <strong>N</strong> for next.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- ========================================== -->
+    <!-- VIEW 2: EXAM SIMULATION (TCS iON STYLE)    -->
+    <!-- ========================================== -->
+    <main id="view-exam" class="view-section">
+      <div class="exam-viewport">
+        <!-- Top Sticky Header -->
+        <header class="exam-header">
+          <div class="exam-brand-area">
+            <div style="width:34px; height:34px; border-radius:6px; background:#4338ca; display:flex; align-items:center; justify-content:center; font-weight:800; color:#fff;">
+              EP
+            </div>
+            <div class="exam-title-group">
+              <h2 id="examHeaderTitle">Placement Mock Test</h2>
+              <span id="examQuestionCounter">Q 1 of 10</span>
+            </div>
+          </div>
+
+          <div class="exam-header-center">
+            <!-- Digital Timer -->
+            <div class="exam-timer-card" id="examTimerCard">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              <div>
+                <div class="timer-label">Time Remaining</div>
+                <div class="timer-clock" id="examTimerClock">00:00</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="exam-header-actions">
+            <button class="btn btn-secondary btn-sm" id="btnHeaderInstructions" style="background:#1e293b; color:#cbd5e1; border-color:#334155;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              Instructions
+            </button>
+            <button class="btn btn-secondary btn-sm" id="btnHeaderQuestionPaper" style="background:#1e293b; color:#cbd5e1; border-color:#334155;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+              Question Paper
+            </button>
+            <button class="btn btn-danger btn-sm" id="btnHeaderSubmit">
+              Submit Test
+            </button>
+          </div>
+        </header>
+
+        <!-- Section Switcher Bar -->
+        <nav class="exam-sections-bar" id="examSectionsBar">
+          <!-- Dynamic section tabs -->
+        </nav>
+
+        <!-- Main Body: Split View -->
+        <div class="exam-body">
+          <!-- Left: Question Display Area -->
+          <div class="exam-question-pane" id="examQuestionPane">
+            <div id="questionDisplayArea">
+              <!-- Dynamically populated from UI.renderQuestion -->
+            </div>
+
+            <!-- Sticky Bottom Action Footer -->
+            <footer class="exam-footer-bar">
+              <div class="footer-action-left">
+                <button class="btn btn-purple btn-sm" id="btnMarkReview">
+                  Mark for Review &amp; Next
+                </button>
+                <button class="btn btn-ghost btn-sm" id="btnClearResponse" style="border:1px solid var(--border-strong);">
+                  Clear Response
+                </button>
+              </div>
+              <div class="footer-action-right">
+                <button class="btn btn-secondary btn-sm" id="btnPrevQuestion">
+                  &larr; Previous
+                </button>
+                <button class="btn btn-primary btn-sm" id="btnSaveNext">
+                  Save &amp; Next &rarr;
+                </button>
+              </div>
+            </footer>
+          </div>
+
+          <!-- Right: TCS iON Question Palette & Status Panel -->
+          <aside class="exam-palette-pane">
+            <!-- Candidate Profile Info -->
+            <div class="candidate-mini-card">
+              <div class="candidate-avatar" id="examCandidateAvatar">C</div>
+              <div class="candidate-info">
+                <h4 id="examCandidateName">Candidate #2026</h4>
+                <span>Roll No: 2026-ACC-091</span>
+              </div>
+            </div>
+
+            <!-- Legend Summary -->
+            <div class="palette-legend-container">
+              <div class="palette-legend-title">Question Palette Legend</div>
+              <div class="palette-legend-grid">
+                <div class="legend-item">
+                  <span class="legend-badge status-answered" id="countAnswered">0</span>
+                  <span>Answered</span>
+                </div>
+                <div class="legend-item">
+                  <span class="legend-badge status-not_answered" id="countNotAnswered">0</span>
+                  <span>Not Answered</span>
+                </div>
+                <div class="legend-item">
+                  <span class="legend-badge status-not_visited" id="countNotVisited">0</span>
+                  <span>Not Visited</span>
+                </div>
+                <div class="legend-item">
+                  <span class="legend-badge status-marked_for_review" id="countMarked">0</span>
+                  <span>Marked</span>
+                </div>
+                <div class="legend-item" style="grid-column: span 2;">
+                  <span class="legend-badge status-answered_marked" id="countAnsweredMarked">0</span>
+                  <span>Answered &amp; Marked for Review</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Palette Grid -->
+            <div class="palette-questions-wrapper">
+              <div class="palette-section-title">Jump to Question</div>
+              <div class="palette-grid" id="paletteQuestionsGrid">
+                <!-- Question buttons generated dynamically -->
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </main>
+
+    <!-- ========================================== -->
+    <!-- VIEW 3: RESULTS & SOLUTIONS REVIEW         -->
+    <!-- ========================================== -->
+    <main id="view-results" class="view-section">
+      <div class="results-container">
+        <!-- Results Hero Card -->
+        <section class="results-hero-card">
+          <div class="results-hero-left">
+            <span class="badge badge-secondary" style="background:rgba(255,255,255,0.15); color:#fff; border:none; margin-bottom:0.75rem;">
+              Mock Assessment Completed
+            </span>
+            <h1 id="resultTestTitle">Placement Mock Test</h1>
+            <p>Performance summary for <strong id="resultCandidateName">Candidate #2026</strong>. Review your score, section accuracy, and explanations for each question below.</p>
+            <div class="results-hero-tags">
+              <span class="results-hero-tag" id="resultTimeTakenTag">Time Taken: 24m 12s</span>
+              <span class="results-hero-tag" id="resultAccuracyTag">Accuracy: 85%</span>
+            </div>
+          </div>
+          <div class="results-score-box">
+            <div class="score-big-number" id="resultScoreBig">0</div>
+            <div class="score-max-text" id="resultMaxScore">out of 10 marks</div>
+            <div class="score-badge-status score-badge-qualified" id="resultPerformanceBadge">Qualified / Excellent</div>
+          </div>
+        </section>
+
+        <!-- KPI Metrics Grid -->
+        <section class="kpi-grid">
+          <div class="kpi-card">
+            <span class="kpi-label">Total Score</span>
+            <span class="kpi-value" id="kpiTotalScore">0 / 10</span>
+            <span class="kpi-sub">Net Marks Scored</span>
+          </div>
+          <div class="kpi-card accuracy">
+            <span class="kpi-label">Net Accuracy</span>
+            <span class="kpi-value" id="kpiAccuracy">0%</span>
+            <span class="kpi-sub">Correct / Total Attempted</span>
+          </div>
+          <div class="kpi-card correct">
+            <span class="kpi-label">Correct Answers</span>
+            <span class="kpi-value" id="kpiCorrect">0</span>
+            <span class="kpi-sub">Positive Marks Added</span>
+          </div>
+          <div class="kpi-card incorrect">
+            <span class="kpi-label">Incorrect Answers</span>
+            <span class="kpi-value" id="kpiIncorrect">0</span>
+            <span class="kpi-sub">Negative Marks Deducted</span>
+          </div>
+          <div class="kpi-card unattempted" style="grid-column: span 4;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <div>
+                <span class="kpi-label">Unattempted Questions</span>
+                <span class="kpi-value" id="kpiUnattempted" style="font-size:1.4rem;">0</span>
+              </div>
+              <div style="font-size:0.85rem; color:var(--text-muted);">
+                0 marks penalty applied to unattempted questions.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section Breakdown Table -->
+        <section class="section-breakdown-card">
+          <h3 class="section-breakdown-title">Section-wise Performance Breakdown</h3>
+          <div style="overflow-x:auto;">
+            <table class="section-table">
+              <thead>
+                <tr>
+                  <th>Section Name</th>
+                  <th>Questions</th>
+                  <th>Correct</th>
+                  <th>Incorrect</th>
+                  <th>Unattempted</th>
+                  <th>Net Score</th>
+                  <th>Accuracy</th>
+                </tr>
+              </thead>
+              <tbody id="sectionBreakdownTableBody">
+                <!-- Section rows dynamically added -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Solutions & Explanations Review -->
+        <section>
+          <div class="solutions-header-area">
+            <div>
+              <h2>Question Analysis &amp; Solutions</h2>
+              <p style="color:var(--text-muted); font-size:0.9rem; margin-top:0.25rem;">Detailed rationale, correct keys, and explanations for every question.</p>
+            </div>
+            <!-- Filter Tabs -->
+            <div class="review-filter-tabs">
+              <button class="review-filter-btn active" data-filter="all">All Questions</button>
+              <button class="review-filter-btn" data-filter="correct">Correct</button>
+              <button class="review-filter-btn" data-filter="incorrect">Incorrect</button>
+              <button class="review-filter-btn" data-filter="unattempted">Unattempted</button>
+            </div>
+          </div>
+
+          <div class="review-question-list" id="reviewQuestionsContainer" style="margin-top:1.5rem;">
+            <!-- Review cards dynamically rendered with explanations -->
+          </div>
+        </section>
+
+        <!-- Action Footer -->
+        <footer class="results-actions-footer">
+          <button class="btn btn-secondary btn-lg" id="btnBackToHome">
+            &larr; Return to Test Dashboard
+          </button>
+          <button class="btn btn-secondary btn-lg" id="btnExportResults">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            Export Result JSON
+          </button>
+          <button class="btn btn-primary btn-lg" id="btnRetakeTest">
+            Retake This Mock Test
+          </button>
+        </footer>
+      </div>
+    </main>
+
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODALS                                     -->
+  <!-- ========================================== -->
+
+  <!-- Modal 1: Instructions -->
+  <div class="modal-overlay" id="instructionsModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Exam Instructions &amp; Navigation Rules</h3>
+        <button class="modal-close-btn" id="btnCloseInstructions">&times;</button>
+      </div>
+      <div class="modal-body" style="font-size:0.92rem; line-height:1.6; color:#334155;">
+        <h4 style="color:#0f172a; margin-bottom:0.5rem;">General Instructions:</h4>
+        <ul style="padding-left:1.25rem; margin-bottom:1rem; display:flex; flex-direction:column; gap:0.4rem;">
+          <li>The total duration of the test will be displayed on the countdown timer at the top.</li>
+          <li>When the timer reaches 00:00:00, the test will automatically conclude and submit.</li>
+          <li>You can navigate freely between questions and sections using the question palette or section tabs.</li>
+        </ul>
+
+        <h4 style="color:#0f172a; margin-bottom:0.5rem;">Palette Status Legend:</h4>
+        <ul style="padding-left:1.25rem; margin-bottom:1rem; display:flex; flex-direction:column; gap:0.4rem;">
+          <li><strong>Grey:</strong> You have not visited the question yet.</li>
+          <li><strong>Red:</strong> You have visited the question but have not answered it.</li>
+          <li><strong>Green:</strong> You have answered the question.</li>
+          <li><strong>Purple:</strong> You have marked the question for review without answering.</li>
+          <li><strong>Purple with Green dot:</strong> You have answered the question and also marked it for review.</li>
+        </ul>
+
+        <h4 style="color:#0f172a; margin-bottom:0.5rem;">Keyboard Shortcuts:</h4>
+        <div style="background:#f1f5f9; padding:0.75rem; border-radius:6px; font-family:var(--font-mono); font-size:0.85rem;">
+          <div>[1] / [A] - Select Option A</div>
+          <div>[2] / [B] - Select Option B</div>
+          <div>[3] / [C] - Select Option C</div>
+          <div>[4] / [D] - Select Option D</div>
+          <div>[N] / [Right Arrow] - Save &amp; Next</div>
+          <div>[P] / [Left Arrow] - Previous Question</div>
+          <div>[M] - Mark for Review &amp; Next</div>
+          <div>[C] - Clear Selected Response</div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary btn-sm" onclick="document.getElementById('instructionsModal').classList.remove('open')">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2: Question Paper -->
+  <div class="modal-overlay" id="questionPaperModal">
+    <div class="modal-card" style="max-width:800px;">
+      <div class="modal-header">
+        <h3>Full Question Paper Overview</h3>
+        <button class="modal-close-btn" id="btnCloseQuestionPaper">&times;</button>
+      </div>
+      <div class="modal-body" id="questionPaperList">
+        <!-- Rendered by UI.renderQuestionPaperModal -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary btn-sm" onclick="document.getElementById('questionPaperModal').classList.remove('open')">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 3: Confirm Submit Modal -->
+  <div class="modal-overlay" id="submitConfirmModal">
+    <div class="modal-card" style="max-width:540px;">
+      <div class="modal-header">
+        <h3>Submit Exam Confirmation</h3>
+        <button class="modal-close-btn" id="btnCloseSubmitModal">&times;</button>
+      </div>
+      <div class="modal-body" id="submitModalSummary">
+        <!-- Populated dynamically with answered, unanswered, marked counts -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="btnCancelSubmit">Return to Exam</button>
+        <button class="btn btn-danger" id="btnConfirmSubmit">Confirm &amp; Submit Test</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 4: Live JSON Editor & Schema Modal -->
+  <div class="modal-overlay" id="jsonEditorModal">
+    <div class="modal-card" style="max-width:860px;">
+      <div class="modal-header">
+        <h3>Live Mock Test JSON Editor &amp; Validator</h3>
+        <button class="modal-close-btn" id="btnCloseJsonEditor">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:0.75rem;">
+          Paste your JSON mock test below or customize the current test schema. The parser automatically supports section-based or single-list formats with options and explanations.
+        </p>
+        <textarea id="jsonEditorTextarea" rows="18" style="width:100%; font-family:var(--font-mono); font-size:0.85rem; padding:1rem; border:1px solid var(--border-strong); border-radius:var(--radius-md); background:#0f172a; color:#38bdf8; outline:none; resize:vertical;"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="document.getElementById('jsonEditorModal').classList.remove('open')">Cancel</button>
+        <button class="btn btn-primary" id="btnApplyJsonEditor">Validate &amp; Load Test</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 5: Quick Text Parser Assistant -->
+  <div class="modal-overlay" id="textParserModal">
+    <div class="modal-card" style="max-width:750px;">
+      <div class="modal-header">
+        <h3>Quick Text / Markdown Question Parser</h3>
+        <button class="modal-close-btn" id="btnCloseTextParser">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="margin-bottom:1rem;">
+          <label style="font-size:0.85rem; font-weight:600; color:var(--text-main); display:block; margin-bottom:0.35rem;">Test Title</label>
+          <input type="text" id="textParserTitle" placeholder="e.g. Accenture Aptitude Assessment Practice" style="width:100%; border:1px solid var(--border-strong); padding:0.5rem 0.75rem; border-radius:var(--radius-sm); font-size:0.9rem;">
+        </div>
+        <div>
+          <label style="font-size:0.85rem; font-weight:600; color:var(--text-main); display:block; margin-bottom:0.35rem;">Paste Plain Text Questions</label>
+          <p style="font-size:0.78rem; color:var(--text-muted); margin-bottom:0.5rem;">
+            Follow standard format: <code>Q1: Question text... A) Option 1 B) Option 2 Answer: B Explanation: Because...</code>
+          </p>
+          <textarea id="textParserInput" rows="12" placeholder="Q1: In an algorithm, what is the best case of binary search?&#10;A) O(n)&#10;B) O(1)&#10;C) O(log n)&#10;D) O(n log n)&#10;Answer: B&#10;Explanation: When the middle element directly matches the target on first comparison, it takes constant O(1) time.&#10;&#10;Q2: What is the antonym of CANDID?&#10;A) Honest&#10;B) Deceptive&#10;C) Forthright&#10;D) Frank&#10;Answer: B&#10;Explanation: Candid means truthful and straightforward. Deceptive is the exact antonym." style="width:100%; font-family:var(--font-mono); font-size:0.85rem; padding:0.85rem; border:1px solid var(--border-strong); border-radius:var(--radius-md);"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="document.getElementById('textParserModal').classList.remove('open')">Cancel</button>
+        <button class="btn btn-primary" id="btnParseTextToTest">Convert &amp; Load Mock Test</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Main JavaScript Module Entry -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

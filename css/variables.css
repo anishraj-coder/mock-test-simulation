@@ -1,0 +1,73 @@
+:root {
+  /* Brand & Neutral Palette */
+  --bg-app: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-surface-elevated: #ffffff;
+  --bg-subtle: #f1f5f9;
+  --bg-muted: #e2e8f0;
+  
+  --border-light: #e2e8f0;
+  --border-strong: #cbd5e1;
+  --border-focus: #4f46e5;
+
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --text-subtle: #94a3b8;
+  --text-inverse: #ffffff;
+
+  --primary: #4338ca;
+  --primary-hover: #3730a3;
+  --primary-light: #e0e7ff;
+  
+  --secondary: #0284c7;
+  --secondary-hover: #0369a1;
+  --secondary-light: #e0f2fe;
+
+  /* Placement / TCS iON Palette Status Colors */
+  --status-answered: #16a34a;
+  --status-answered-bg: #dcfce7;
+  --status-answered-text: #14532d;
+
+  --status-not-answered: #dc2626;
+  --status-not-answered-bg: #fee2e2;
+  --status-not-answered-text: #7f1d1d;
+
+  --status-not-visited: #94a3b8;
+  --status-not-visited-bg: #f1f5f9;
+  --status-not-visited-text: #475569;
+
+  --status-marked: #9333ea;
+  --status-marked-bg: #f3e8ff;
+  --status-marked-text: #581c87;
+
+  --status-answered-marked: #7e22ce;
+  --status-answered-marked-badge: #22c55e;
+
+  /* Timer alerts */
+  --timer-normal: #0f172a;
+  --timer-warning: #d97706;
+  --timer-critical: #dc2626;
+
+  /* Dimensions & Spacing */
+  --header-height: 64px;
+  --palette-width: 320px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  /* Typography */
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Shadows */
+  --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
