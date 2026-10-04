@@ -93,9 +93,11 @@ class MockExamApp {
           </div>
           <div class="sample-test-desc">${test.description}</div>
           <div class="sample-test-meta">
-            <span>📝 ${totalQ} Questions</span>
-            <span>📑 ${test.sections.length} Sections</span>
-            <span>⚖ Marking: +${test.markingScheme.correct} / ${test.markingScheme.incorrect}</span>
+            <span>${totalQ} Questions</span>
+            <span>&bull;</span>
+            <span>${test.sections.length} Sections</span>
+            <span>&bull;</span>
+            <span>Marking: +${test.markingScheme.correct} / ${test.markingScheme.incorrect}</span>
           </div>
         </div>
       `;
@@ -127,9 +129,9 @@ class MockExamApp {
     if (descEl) descEl.textContent = testData.description;
     if (metaEl) {
       metaEl.innerHTML = `
-        <span class="badge badge-secondary">⏱ ${testData.durationMinutes} Minutes</span>
-        <span class="badge badge-secondary">❓ ${totalQ} Total Questions</span>
-        <span class="badge badge-secondary">✨ Marking: +${testData.markingScheme.correct} / ${testData.markingScheme.incorrect}</span>
+        <span class="badge badge-secondary">${testData.durationMinutes} Minutes</span>
+        <span class="badge badge-secondary">${totalQ} Questions</span>
+        <span class="badge badge-secondary">Marking: +${testData.markingScheme.correct} / ${testData.markingScheme.incorrect}</span>
       `;
     }
   }

@@ -1,0 +1,569 @@
+{
+  "title": "Accenture Technical Mock Test: Cloud Basics, Cloud Security & Networking",
+  "description": "45 MCQs across three sections (15 each). Each question has one correct answer. Marking: +1 for correct, -0.25 for incorrect, 0 for unattempted. Duration: 45 minutes.",
+  "durationMinutes": 45,
+  "markingScheme": {
+    "correct": 1,
+    "incorrect": 0
+  },
+  "sections": [
+    {
+      "id": "sec_1",
+      "name": "Cloud Basics",
+      "questions": [
+        {
+          "id": "q_1",
+          "question": "Which of the following is NOT an essential characteristic of cloud computing as defined by NIST?",
+          "options": [
+            "On-demand self-service",
+            "Broad network access",
+            "Resource pooling",
+            "Fixed, manually provisioned capacity"
+          ],
+          "correctAnswer": 3,
+          "explanation": "NIST lists on-demand self-service, broad network access, resource pooling, rapid elasticity and measured service. Fixed, manually provisioned capacity is the opposite of cloud elasticity."
+        },
+        {
+          "id": "q_2",
+          "question": "Which of the following is an example of Infrastructure as a Service (IaaS)?",
+          "options": [
+            "Gmail",
+            "Amazon EC2",
+            "Salesforce CRM",
+            "Microsoft 365"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Amazon EC2 provides virtual machines (compute infrastructure). Gmail, Salesforce and Microsoft 365 are SaaS."
+        },
+        {
+          "id": "q_3",
+          "question": "Which cloud service model gives the customer the LEAST management responsibility?",
+          "options": [
+            "IaaS",
+            "PaaS",
+            "SaaS",
+            "On-premises data center"
+          ],
+          "correctAnswer": 2,
+          "explanation": "In SaaS the provider manages the application, runtime, OS and infrastructure; the customer mainly manages their data and access."
+        },
+        {
+          "id": "q_4",
+          "question": "A startup wants its developers to focus only on writing code while the provider handles servers, OS patching and the runtime. Which model fits best?",
+          "options": [
+            "PaaS",
+            "IaaS",
+            "Colocation",
+            "Bare-metal hosting"
+          ],
+          "correctAnswer": 0,
+          "explanation": "PaaS (e.g., Azure App Service, Google App Engine) abstracts servers, OS and runtime so developers deploy only code. IaaS leaves OS management to the customer."
+        },
+        {
+          "id": "q_5",
+          "question": "A bank keeps customer records in its own data center but uses a public cloud for its web front-end during traffic peaks. Which deployment model is this?",
+          "options": [
+            "Public cloud",
+            "Private cloud",
+            "Hybrid cloud",
+            "Community cloud"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Combining private/on-premises infrastructure with a public cloud, with workloads coordinated between them, is a hybrid cloud."
+        },
+        {
+          "id": "q_6",
+          "question": "Automatically adding resources when demand rises and removing them when demand falls is called:",
+          "options": [
+            "Elasticity",
+            "Multi-tenancy",
+            "Replication",
+            "Virtualization"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Elasticity is the ability to scale resources up and down automatically with demand."
+        },
+        {
+          "id": "q_7",
+          "question": "Moving from buying physical servers to renting cloud resources mainly shifts spending from:",
+          "options": [
+            "Operating expenditure to capital expenditure",
+            "Capital expenditure to operating expenditure",
+            "Fixed cost to zero cost",
+            "Variable cost to fixed cost"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Cloud replaces large upfront hardware purchases (CapEx) with pay-as-you-go usage fees (OpEx)."
+        },
+        {
+          "id": "q_8",
+          "question": "Which of the following is a Type 1 (bare-metal) hypervisor?",
+          "options": [
+            "Oracle VirtualBox",
+            "VMware Workstation",
+            "VMware ESXi",
+            "Parallels Desktop"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Type 1 hypervisors run directly on hardware (ESXi, Hyper-V, KVM). VirtualBox, Workstation and Parallels are Type 2 and run on top of a host OS."
+        },
+        {
+          "id": "q_9",
+          "question": "How do containers differ from virtual machines?",
+          "options": [
+            "Each container carries a full guest operating system",
+            "Each container needs its own hypervisor",
+            "Containers cannot run in the cloud",
+            "Containers share the host OS kernel, so they are lighter and start faster"
+          ],
+          "correctAnswer": 3,
+          "explanation": "Containers package the app and its dependencies but share the host kernel, so they are smaller and faster to start than VMs, which each include a guest OS."
+        },
+        {
+          "id": "q_10",
+          "question": "Under the shared responsibility model for IaaS, who is responsible for patching the guest operating system of a virtual machine?",
+          "options": [
+            "The cloud provider",
+            "The customer",
+            "Both equally",
+            "The internet service provider"
+          ],
+          "correctAnswer": 1,
+          "explanation": "In IaaS the provider secures the physical infrastructure and hypervisor; the customer manages the guest OS, applications and data."
+        },
+        {
+          "id": "q_11",
+          "question": "An application must keep running even if a single data center in a region fails. What is the best approach?",
+          "options": [
+            "Deploy across multiple availability zones behind a load balancer",
+            "Run everything in one availability zone on a larger instance",
+            "Take weekly backups to a local disk",
+            "Increase the CPU count of the server"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Availability zones are isolated data centers within a region. Spreading instances across zones removes the single point of failure; larger instances do not."
+        },
+        {
+          "id": "q_12",
+          "question": "Which statement best describes serverless computing (e.g., AWS Lambda)?",
+          "options": [
+            "You manage and patch the servers but pay monthly",
+            "A dedicated physical server is required",
+            "It can only run on-premises",
+            "Code runs on demand, the provider manages the infrastructure, and billing is per execution"
+          ],
+          "correctAnswer": 3,
+          "explanation": "Serverless platforms run your functions on demand, scale automatically, hide server management and bill by usage (invocations and duration)."
+        },
+        {
+          "id": "q_13",
+          "question": "An app must store millions of user-uploaded photos and videos cheaply, with HTTP access and virtually unlimited scale. Which storage type is the best fit?",
+          "options": [
+            "Block storage attached to a single VM",
+            "A relational database",
+            "Object storage such as Amazon S3",
+            "CPU cache"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Object storage is built for large volumes of unstructured data accessed over HTTP APIs. Block storage suits VM disks; relational databases suit structured data."
+        },
+        {
+          "id": "q_14",
+          "question": "A global news website wants to reduce latency for readers worldwide by serving static content from locations near them. What should it use?",
+          "options": [
+            "Add more RAM to the origin server",
+            "A Content Delivery Network (CDN)",
+            "A larger relational database",
+            "A single bigger region"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A CDN caches content at edge locations close to users, reducing latency and load on the origin."
+        },
+        {
+          "id": "q_15",
+          "question": "An online store expects unpredictable traffic spikes during a flash sale and must avoid both downtime and overpaying for idle servers. Which combination is most suitable?",
+          "options": [
+            "An Auto Scaling group with a load balancer",
+            "Buy enough fixed servers for the peak",
+            "Manually add servers when customers complain",
+            "One very large instance"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Auto scaling adds and removes instances with demand, and the load balancer spreads traffic across them. Fixed or manual capacity wastes money or risks downtime."
+        }
+      ]
+    },
+    {
+      "id": "sec_2",
+      "name": "Cloud Security",
+      "questions": [
+        {
+          "id": "q_16",
+          "question": "In the shared responsibility model, which responsibility always remains with the customer regardless of the service model?",
+          "options": [
+            "Physical security of data centers",
+            "Protecting and classifying their own data and managing who can access it",
+            "Maintaining the hypervisor",
+            "Power and cooling of the facility"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Even in SaaS, customers remain responsible for their data, identities and access. Physical security, power and hypervisors are provider responsibilities."
+        },
+        {
+          "id": "q_17",
+          "question": "A junior analyst only needs to read reports stored in one storage bucket. Which IAM approach follows the principle of least privilege?",
+          "options": [
+            "Grant admin access so no further requests are needed",
+            "Grant full storage access to all analysts",
+            "Grant read/write access to all buckets",
+            "Grant read-only permission scoped to that bucket only"
+          ],
+          "correctAnswer": 3,
+          "explanation": "Least privilege means giving only the minimum permissions needed, for only the required resources."
+        },
+        {
+          "id": "q_18",
+          "question": "A user signs in with a password and then enters a one-time code from an authenticator app. Which concept is this?",
+          "options": [
+            "Multi-factor authentication",
+            "Single sign-on",
+            "Federation",
+            "Role-based access control"
+          ],
+          "correctAnswer": 0,
+          "explanation": "MFA combines factors from different categories: something you know (password) and something you have (authenticator app)."
+        },
+        {
+          "id": "q_19",
+          "question": "Two cloud services that have never shared a key must exchange a very large dataset securely and efficiently. Which design is best?",
+          "options": [
+            "Encrypt the whole dataset directly with RSA",
+            "Hash the dataset with MD5 and send the hash",
+            "Agree on a key with asymmetric cryptography (ECDHE/RSA), then encrypt the data with AES-GCM",
+            "Use DES with a shared password"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Hybrid encryption uses asymmetric crypto for key exchange and fast symmetric crypto for bulk data. RSA is too slow for bulk data, MD5 gives no confidentiality, and DES is broken."
+        },
+        {
+          "id": "q_20",
+          "question": "To prove that a document came from a specific sender and was not altered, the sender should:",
+          "options": [
+            "Encrypt it with the receiver's private key",
+            "Sign its hash with the sender's private key",
+            "Hash it with MD5 only",
+            "Encode it in Base64"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A digital signature (hash signed with the sender's private key) gives integrity, authentication and non-repudiation. Base64 is only encoding; MD5 alone has no key."
+        },
+        {
+          "id": "q_21",
+          "question": "In envelope encryption, what encrypts the data encryption key (DEK)?",
+          "options": [
+            "The plaintext data",
+            "A hash of the DEK",
+            "The user's password",
+            "A key encryption key (KEK) held in a KMS"
+          ],
+          "correctAnswer": 3,
+          "explanation": "The DEK encrypts the data, and the KEK (master key in a KMS/HSM) encrypts the DEK. Rotating the KEK only requires re-wrapping DEKs."
+        },
+        {
+          "id": "q_22",
+          "question": "Which is the best way to store user passwords?",
+          "options": [
+            "A slow, salted hash such as bcrypt or Argon2",
+            "AES in ECB mode with a shared key",
+            "A plain SHA-256 hash",
+            "Base64 encoding"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Password storage needs a deliberately slow, salted hash. Plain SHA-256 is too fast to brute-force safely, ECB leaks patterns, and Base64 is reversible encoding."
+        },
+        {
+          "id": "q_23",
+          "question": "A developer accidentally commits a cloud access key to a public repository. What is the BEST immediate response?",
+          "options": [
+            "Delete the commit and do nothing else",
+            "Wait and see whether any abuse occurs",
+            "Deactivate and rotate the key, then review audit logs for misuse",
+            "Rename the repository"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Once exposed, a key must be treated as compromised: revoke and rotate it, then check logs. Deleting the commit does not remove copies already scraped."
+        },
+        {
+          "id": "q_24",
+          "question": "Which control protects data in transit between a browser and a cloud API?",
+          "options": [
+            "AES-256 disk encryption on the storage volume",
+            "TLS 1.2/1.3",
+            "KMS key rotation",
+            "Object versioning"
+          ],
+          "correctAnswer": 1,
+          "explanation": "TLS encrypts data moving across the network. Disk encryption protects data at rest; key rotation and versioning do not protect traffic."
+        },
+        {
+          "id": "q_25",
+          "question": "A web application is being hit by SQL injection and cross-site scripting attempts. Which service filters such HTTP-layer attacks?",
+          "options": [
+            "VPN gateway",
+            "DHCP server",
+            "NAT gateway",
+            "Web Application Firewall (WAF)"
+          ],
+          "correctAnswer": 3,
+          "explanation": "A WAF inspects HTTP/HTTPS requests (Layer 7) and blocks patterns such as SQL injection and XSS."
+        },
+        {
+          "id": "q_26",
+          "question": "What is the most common cause of cloud data breaches?",
+          "options": [
+            "Misconfiguration, such as publicly exposed storage buckets",
+            "Mathematically breaking AES-256",
+            "Hypervisor zero-day exploits",
+            "Stolen physical disks from provider data centers"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Customer-side misconfiguration (open buckets, overly broad permissions) causes far more breaches than cryptographic or hypervisor attacks."
+        },
+        {
+          "id": "q_27",
+          "question": "A law firm wants cloud storage where neither the provider nor a breach at the provider can expose plaintext. Which approach should it use?",
+          "options": [
+            "Server-side encryption with provider-managed keys",
+            "TLS during upload only",
+            "Client-side encryption with keys kept by the firm",
+            "A public bucket with a long random URL"
+          ],
+          "correctAnswer": 2,
+          "explanation": "With client-side encryption the provider only sees ciphertext and never holds the keys. Provider-managed keys let the provider decrypt; TLS only protects data in transit."
+        },
+        {
+          "id": "q_28",
+          "question": "Which principle best describes the zero trust security model?",
+          "options": [
+            "Trust everything inside the corporate network",
+            "Never trust, always verify every request",
+            "Trust all users who have completed MFA once, permanently",
+            "Trust only traffic that arrives through the VPN"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Zero trust assumes no implicit trust based on network location. Every request is authenticated, authorized and continuously verified."
+        },
+        {
+          "id": "q_29",
+          "question": "A website is flooded with traffic from thousands of compromised devices and becomes unavailable. Which attack is this, and what is a suitable mitigation?",
+          "options": [
+            "Phishing; user training only",
+            "SQL injection; parameterized queries",
+            "Man-in-the-middle; TLS only",
+            "DDoS; traffic filtering and rate limiting through a CDN or DDoS protection service"
+          ],
+          "correctAnswer": 3,
+          "explanation": "Overwhelming a service with distributed traffic is a DDoS attack. Mitigation uses edge filtering, rate limiting and scrubbing services."
+        },
+        {
+          "id": "q_30",
+          "question": "An auditor requires encryption at rest, a log of every use of the encryption key, and the ability to cut off access to data by disabling the key. Which option satisfies all three?",
+          "options": [
+            "Server-side encryption with a customer-managed KMS key",
+            "Provider-managed default keys with no logging",
+            "Unencrypted storage with strict ACLs",
+            "Base64-encoding the files"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A customer-managed KMS key gives encryption, key-usage audit logs, and a kill switch via disabling the key. The other options lack encryption or control."
+        }
+      ]
+    },
+    {
+      "id": "sec_3",
+      "name": "Networking",
+      "questions": [
+        {
+          "id": "q_31",
+          "question": "At which OSI layer do routers operate to forward packets using IP addresses?",
+          "options": [
+            "Layer 1 (Physical)",
+            "Layer 2 (Data Link)",
+            "Layer 3 (Network)",
+            "Layer 4 (Transport)"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Routing based on IP addresses happens at the Network layer (Layer 3)."
+        },
+        {
+          "id": "q_32",
+          "question": "Which protocol is connectionless and does not guarantee delivery, making it suitable for live streaming and DNS queries?",
+          "options": [
+            "UDP",
+            "TCP",
+            "FTP",
+            "HTTP"
+          ],
+          "correctAnswer": 0,
+          "explanation": "UDP is connectionless with low overhead and no delivery guarantee. TCP is connection-oriented and reliable."
+        },
+        {
+          "id": "q_33",
+          "question": "Which default port does SSH use?",
+          "options": [
+            "21",
+            "22",
+            "23",
+            "25"
+          ],
+          "correctAnswer": 1,
+          "explanation": "SSH uses port 22. Port 21 is FTP, 23 is Telnet and 25 is SMTP."
+        },
+        {
+          "id": "q_34",
+          "question": "Which service translates a domain name such as example.com into an IP address?",
+          "options": [
+            "DHCP",
+            "NAT",
+            "ARP",
+            "DNS"
+          ],
+          "correctAnswer": 3,
+          "explanation": "DNS (Domain Name System) resolves domain names to IP addresses."
+        },
+        {
+          "id": "q_35",
+          "question": "A new laptop joins a network and automatically receives an IP address, subnet mask and default gateway. Which protocol provided these?",
+          "options": [
+            "DNS",
+            "ICMP",
+            "DHCP",
+            "SMTP"
+          ],
+          "correctAnswer": 2,
+          "explanation": "DHCP assigns IP configuration automatically to devices joining a network."
+        },
+        {
+          "id": "q_36",
+          "question": "How many usable host addresses does a /24 IPv4 network (e.g., 192.168.1.0/24) have?",
+          "options": [
+            "254",
+            "256",
+            "255",
+            "252"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A /24 has 2^8 = 256 addresses; subtracting the network and broadcast addresses leaves 254 usable hosts."
+        },
+        {
+          "id": "q_37",
+          "question": "Which of the following is a private IPv4 address?",
+          "options": [
+            "172.32.10.5",
+            "172.20.5.4",
+            "192.169.1.10",
+            "11.0.0.1"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Private ranges are 10.0.0.0/8, 172.16.0.0 to 172.31.255.255 and 192.168.0.0/16. 172.20.5.4 falls inside the 172.16-172.31 range."
+        },
+        {
+          "id": "q_38",
+          "question": "Many devices on a private network share a single public IP address to access the internet. Which technique enables this?",
+          "options": [
+            "DNS",
+            "Subnetting",
+            "Proxy ARP",
+            "NAT"
+          ],
+          "correctAnswer": 3,
+          "explanation": "Network Address Translation maps private addresses (and ports) to a public address."
+        },
+        {
+          "id": "q_39",
+          "question": "A Layer 2 switch forwards frames within a LAN using which address?",
+          "options": [
+            "IP address",
+            "Port number",
+            "MAC address",
+            "Domain name"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Switches learn and use MAC addresses (Layer 2) to forward frames to the right port."
+        },
+        {
+          "id": "q_40",
+          "question": "What is the sequence of the TCP three-way handshake?",
+          "options": [
+            "SYN, ACK, SYN-ACK",
+            "SYN, SYN-ACK, ACK",
+            "ACK, SYN, FIN",
+            "SYN, FIN, ACK"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The client sends SYN, the server replies SYN-ACK, and the client completes with ACK."
+        },
+        {
+          "id": "q_41",
+          "question": "Remote employees must securely reach the corporate network over the public internet. Which solution creates an encrypted tunnel for this?",
+          "options": [
+            "A VPN (e.g., IPsec or SSL VPN)",
+            "A public DHCP server",
+            "A plain HTTP proxy",
+            "Telnet"
+          ],
+          "correctAnswer": 0,
+          "explanation": "A VPN encrypts traffic through a tunnel over an untrusted network. Telnet and plain HTTP proxies send data unencrypted."
+        },
+        {
+          "id": "q_42",
+          "question": "The ping command uses which protocol?",
+          "options": [
+            "TCP",
+            "UDP",
+            "SMTP",
+            "ICMP"
+          ],
+          "correctAnswer": 3,
+          "explanation": "Ping sends ICMP echo request and reply messages to test reachability."
+        },
+        {
+          "id": "q_43",
+          "question": "In a cloud VPC, web servers must be reachable from the internet, the database must NOT be directly reachable, yet the database must still download patches. Which design is best?",
+          "options": [
+            "Put everything in a public subnet with public IPs",
+            "Put the database in a public subnet protected only by a strong password",
+            "Web servers in a public subnet, database in a private subnet using a NAT gateway for outbound updates",
+            "Disable all internet access for the web servers"
+          ],
+          "correctAnswer": 2,
+          "explanation": "A private subnet keeps the database unreachable from the internet, while a NAT gateway allows outbound-only access for patches. Web servers stay in a public subnet."
+        },
+        {
+          "id": "q_44",
+          "question": "Users can open a website by typing its IP address but not by typing its domain name. Which component is most likely failing?",
+          "options": [
+            "The switch's MAC address table",
+            "DNS resolution",
+            "The TCP three-way handshake",
+            "The physical network cable"
+          ],
+          "correctAnswer": 1,
+          "explanation": "If the IP works, connectivity is fine. Only name-to-IP translation is failing, which points to DNS."
+        },
+        {
+          "id": "q_45",
+          "question": "A stateful firewall allows an outbound request and automatically permits the matching return traffic. What does 'stateful' mean here?",
+          "options": [
+            "It tracks the state of connections",
+            "It inspects only MAC addresses",
+            "It operates only at Layer 1",
+            "It encrypts all traffic that passes through"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Stateful firewalls keep a connection table, so replies to allowed outbound connections are automatically permitted. Cloud security groups behave this way."
+        }
+      ]
+    }
+  ]
+}

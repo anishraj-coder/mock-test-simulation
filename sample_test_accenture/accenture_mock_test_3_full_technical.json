@@ -1,0 +1,587 @@
+{
+  "title": "Accenture Technical Mock Test 3: Full Technical Assessment",
+  "description": "45 technical MCQs in the proportion reported for the Accenture ASE technical round: pseudocode and output tracing, MS Office, computer networks, cloud, cybersecurity, and DBMS/OS/software basics. Marking: +1 for each correct answer, no negative marking. Duration: 45 minutes.",
+  "durationMinutes": 45,
+  "markingScheme": {
+    "correct": 1,
+    "incorrect": 0
+  },
+  "sections": [
+    {
+      "id": "sec_1",
+      "name": "Pseudocode & Output Tracing",
+      "questions": [
+        {
+          "id": "q_1",
+          "question": "Read the pseudocode:\n\nSet a = 7\nSet b = 3\na = a + b\nb = a - b\na = a - b\nPrint a, b\n\nWhat is printed?",
+          "options": [
+            "7 3",
+            "3 7",
+            "10 7",
+            "10 3"
+          ],
+          "correctAnswer": 1,
+          "explanation": "a = 10; b = 10 - 3 = 7; a = 10 - 7 = 3. The values are swapped without a temporary variable, so it prints 3 7."
+        },
+        {
+          "id": "q_2",
+          "question": "A cashier's program adds only even bill numbers:\n\nSet sum = 0\nFor i = 1 to 5\n    If i mod 2 == 0\n        sum = sum + i\n    End If\nEnd For\nPrint sum\n\nWhat is the output?",
+          "options": [
+            "15",
+            "9",
+            "12",
+            "6"
+          ],
+          "correctAnswer": 3,
+          "explanation": "Only i = 2 and i = 4 satisfy i mod 2 == 0, so sum = 2 + 4 = 6."
+        },
+        {
+          "id": "q_3",
+          "question": "A program counts the digits of a number (integer division):\n\nSet n = 1234\nSet count = 0\nWhile n > 0\n    n = n / 10\n    count = count + 1\nEnd While\nPrint count\n\nWhat is printed?",
+          "options": [
+            "3",
+            "5",
+            "4",
+            "1234"
+          ],
+          "correctAnswer": 2,
+          "explanation": "n becomes 123, 12, 1, 0 across four iterations, so count = 4."
+        },
+        {
+          "id": "q_4",
+          "question": "A store applies discounts by price:\n\nSet price = 1200\nIf price > 2000\n    discount = 20\nElse If price > 1000\n    discount = 10\nElse\n    discount = 5\nEnd If\nPrint price - price * discount / 100\n\nWhat is the output?",
+          "options": [
+            "960",
+            "1140",
+            "1200",
+            "1080"
+          ],
+          "correctAnswer": 3,
+          "explanation": "1200 > 2000 is false, 1200 > 1000 is true, so discount = 10. 1200 - 1200 x 10 / 100 = 1200 - 120 = 1080."
+        },
+        {
+          "id": "q_5",
+          "question": "Study the nested loops:\n\nSet count = 0\nFor i = 1 to 3\n    For j = 1 to i\n        count = count + 1\n    End For\nEnd For\nPrint count\n\nWhat is the output?",
+          "options": [
+            "3",
+            "9",
+            "6",
+            "5"
+          ],
+          "correctAnswer": 2,
+          "explanation": "The inner loop runs 1, 2 and 3 times for i = 1, 2, 3. Total = 1 + 2 + 3 = 6."
+        },
+        {
+          "id": "q_6",
+          "question": "Consider the recursive function:\n\nFunction g(n)\n    If n == 0 Return 0\n    If n == 1 Return 1\n    Return g(n - 1) + g(n - 2)\nEnd Function\nPrint g(6)\n\nWhat is printed?",
+          "options": [
+            "5",
+            "13",
+            "21",
+            "8"
+          ],
+          "correctAnswer": 3,
+          "explanation": "This is the Fibonacci sequence: g(0)=0, g(1)=1, g(2)=1, g(3)=2, g(4)=3, g(5)=5, g(6)=8."
+        },
+        {
+          "id": "q_7",
+          "question": "Assume integer division:\n\nSet x = 10\nSet y = 3\nSet z = (x / y) * y + (x mod y)\nPrint z\n\nWhat is printed?",
+          "options": [
+            "9",
+            "3",
+            "13",
+            "10"
+          ],
+          "correctAnswer": 3,
+          "explanation": "x / y = 3 (integer division), 3 x 3 = 9, x mod y = 1, so z = 9 + 1 = 10. This is the division identity: quotient x divisor + remainder = dividend."
+        },
+        {
+          "id": "q_8",
+          "question": "A teacher's program checks marks:\n\nSet marks = [40, 60, 80, 100]\nSet total = 0\nFor each m in marks\n    total = total + m\nEnd For\nSet avg = total / 4\nSet count = 0\nFor each m in marks\n    If m > avg\n        count = count + 1\n    End If\nEnd For\nPrint count\n\nWhat is the output?",
+          "options": [
+            "2",
+            "1",
+            "3",
+            "4"
+          ],
+          "correctAnswer": 0,
+          "explanation": "total = 280, avg = 70. Marks strictly greater than 70 are 80 and 100, so count = 2."
+        },
+        {
+          "id": "q_9",
+          "question": "Trace this loop:\n\nFor i = 1 to 10\n    If i mod 3 == 0\n        Continue\n    End If\n    If i > 7\n        Break\n    End If\n    Print i\nEnd For\n\nWhat is printed?",
+          "options": [
+            "1 2 4 5 7",
+            "1 2 3 4 5 6 7",
+            "1 2 4 5 7 8",
+            "1 2 4 5 7 8 10"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Multiples of 3 (3, 6, 9) are skipped by Continue. At i = 8 the condition i > 7 is true, so Break ends the loop before printing 8."
+        },
+        {
+          "id": "q_10",
+          "question": "Assume Java-style evaluation (left to right):\n\nSet i = 5\nSet j = i++ + ++i\nPrint i, j\n\nWhat is printed?",
+          "options": [
+            "6 11",
+            "7 11",
+            "7 12",
+            "6 12"
+          ],
+          "correctAnswer": 2,
+          "explanation": "i++ uses 5 and then makes i = 6. ++i makes i = 7 and uses 7. So j = 5 + 7 = 12 and i = 7."
+        },
+        {
+          "id": "q_11",
+          "question": "Evaluate the condition:\n\nSet a = 5\nSet b = 10\nIf (a > 3 AND b < 8) OR (a == 5 AND NOT (b == 10))\n    Print 'X'\nElse\n    Print 'Y'\nEnd If\n\nWhat is printed?",
+          "options": [
+            "X",
+            "Y",
+            "XY",
+            "Error"
+          ],
+          "correctAnswer": 1,
+          "explanation": "(a > 3 AND b < 8) = true AND false = false. (a == 5 AND NOT(b == 10)) = true AND false = false. false OR false = false, so the Else branch prints Y."
+        },
+        {
+          "id": "q_12",
+          "question": "A parking lot charges Rs 20 for the first 2 hours and Rs 10 for each extra hour:\n\nFunction charge(hours)\n    If hours <= 2\n        Return 20\n    Else\n        Return 20 + (hours - 2) * 10\n    End If\nEnd Function\nPrint charge(5) + charge(1)\n\nWhat is printed?",
+          "options": [
+            "60",
+            "80",
+            "90",
+            "70"
+          ],
+          "correctAnswer": 3,
+          "explanation": "charge(5) = 20 + 3 x 10 = 50. charge(1) = 20. Total = 70."
+        },
+        {
+          "id": "q_13",
+          "question": "One pass of a sorting routine:\n\nSet arr = [5, 1, 4, 2]\nFor i = 0 to 2\n    If arr[i] > arr[i + 1]\n        Swap arr[i], arr[i + 1]\n    End If\nEnd For\nPrint arr\n\nWhat is printed?",
+          "options": [
+            "1 2 4 5",
+            "1 5 4 2",
+            "1 4 2 5",
+            "5 1 4 2"
+          ],
+          "correctAnswer": 2,
+          "explanation": "i = 0: [1,5,4,2]. i = 1: [1,4,5,2]. i = 2: [1,4,2,5]. One bubble-sort pass moves the largest value to the end but does not fully sort."
+        },
+        {
+          "id": "q_14",
+          "question": "A program checks if a word is a palindrome (comparison is case-sensitive):\n\nSet s = 'Madam'\nSet rev = ''\nFor i = length(s) - 1 down to 0\n    rev = rev + s[i]\nEnd For\nIf s == rev\n    Print 'Yes'\nElse\n    Print 'No'\nEnd If\n\nWhat is printed?",
+          "options": [
+            "No",
+            "Yes",
+            "Error",
+            "Nothing is printed"
+          ],
+          "correctAnswer": 0,
+          "explanation": "The reverse of 'Madam' is 'madaM'. Because the comparison is case-sensitive, 'Madam' is not equal to 'madaM', so No is printed."
+        }
+      ]
+    },
+    {
+      "id": "sec_2",
+      "name": "Common Applications (MS Office)",
+      "questions": [
+        {
+          "id": "q_15",
+          "question": "A sales sheet has regions in A2:A100 and sales amounts in B2:B100. The manager wants the total sales for 'North' only. Which formula should be used?",
+          "options": [
+            "=SUMIF(A2:A100,\"North\",B2:B100)",
+            "=SUM(B2:B100)",
+            "=COUNTIF(A2:A100,\"North\")",
+            "=IF(A2:A100=\"North\",B2:B100)"
+          ],
+          "correctAnswer": 0,
+          "explanation": "SUMIF adds the values in B where the matching cell in A equals North. SUM adds everything, COUNTIF counts rows, and IF with a range does not total conditionally."
+        },
+        {
+          "id": "q_16",
+          "question": "Employee IDs are in column A (A2:A50), names in B and salaries in C. The ID to look up is in E2. Which formula returns the exact salary?",
+          "options": [
+            "=VLOOKUP(E2,A2:C50,3,FALSE)",
+            "=VLOOKUP(E2,A2:C50,2,FALSE)",
+            "=VLOOKUP(E2,A2:C50,3,TRUE)",
+            "=HLOOKUP(E2,A2:C50,3,FALSE)"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Salary is the 3rd column of the table and FALSE forces an exact match. Column 2 would return the name, TRUE gives an approximate match that needs sorted data, and HLOOKUP searches across rows."
+        },
+        {
+          "id": "q_17",
+          "question": "A tax rate is stored in F1. The formula =B2*F1 in C2 is copied down the column, but from row 3 the results are wrong. What is the fix?",
+          "options": [
+            "Change the formula to =B2*F1 and sort the data",
+            "Change the formula to =$B$2*F1",
+            "Change the formula to =B2*$F1",
+            "Change the formula to =B2*$F$1"
+          ],
+          "correctAnswer": 3,
+          "explanation": "$F$1 is an absolute reference, so it stays fixed when copied. Without it, F1 shifts to F2, F3, and so on. $B$2 would freeze the wrong cell, and $F1 still lets the row change."
+        },
+        {
+          "id": "q_18",
+          "question": "HR must send 500 personalized offer letters, with each candidate's name and address taken from an Excel file. Which Word feature should be used?",
+          "options": [
+            "Mail Merge from the Mailings tab, using the Excel file as the data source",
+            "Track Changes",
+            "Format Painter",
+            "Insert a Table of Contents"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Mail Merge combines one letter template with a data source to produce personalized documents. The other features do not pull data from a list."
+        },
+        {
+          "id": "q_19",
+          "question": "A 60-page report needs a table of contents that updates automatically when pages change. What is the correct approach in Word?",
+          "options": [
+            "Apply Heading styles to the titles and insert an automatic Table of Contents from the References tab",
+            "Type the headings and page numbers manually",
+            "Insert a footnote for every heading",
+            "Use Find and Replace to list all headings"
+          ],
+          "correctAnswer": 0,
+          "explanation": "An automatic Table of Contents is built from Heading styles and can be refreshed with Update Table. Manual typing and footnotes do not update by themselves."
+        },
+        {
+          "id": "q_20",
+          "question": "A company wants a PowerPoint to loop automatically at an exhibition booth, with nobody controlling it and visitors unable to change slides. Which setting should be used?",
+          "options": [
+            "Set up the show as 'Presented by a speaker'",
+            "Set up the show as 'Browsed by an individual (window)'",
+            "Set up the show as 'Browsed at a kiosk (full screen)'",
+            "Print the slides as handouts"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Kiosk mode runs the show in a loop without manual control, and the viewer cannot navigate. The speaker mode needs someone to advance slides."
+        },
+        {
+          "id": "q_21",
+          "question": "A teacher wants every mark below 40 in an Excel sheet to turn red automatically, even when marks are edited later. What should be used?",
+          "options": [
+            "Format Painter",
+            "Data Validation",
+            "Freeze Panes",
+            "Conditional Formatting with a 'Less Than 40' rule"
+          ],
+          "correctAnswer": 3,
+          "explanation": "Conditional Formatting applies formatting based on cell values and updates when values change. Format Painter copies fixed formatting, and Data Validation restricts input."
+        }
+      ]
+    },
+    {
+      "id": "sec_3",
+      "name": "Computer Networks",
+      "questions": [
+        {
+          "id": "q_22",
+          "question": "A network administrator is working in the subnet 192.168.10.64/26. Which address CANNOT be assigned to a host?",
+          "options": [
+            "192.168.10.65",
+            "192.168.10.100",
+            "192.168.10.126",
+            "192.168.10.127"
+          ],
+          "correctAnswer": 3,
+          "explanation": "A /26 has a block size of 64, so this subnet spans .64 to .127. .64 is the network address and .127 is the broadcast address, so .127 cannot be assigned to a host."
+        },
+        {
+          "id": "q_23",
+          "question": "A school lab needs a subnet for 25 computers and wants no more addresses than necessary. Which prefix should be used?",
+          "options": [
+            "/28",
+            "/26",
+            "/27",
+            "/25"
+          ],
+          "correctAnswer": 2,
+          "explanation": "25 hosts + 2 (network and broadcast) = 27, so the next power of two is 32 = 2^5. Five host bits give /27 with 30 usable hosts. /28 provides only 14."
+        },
+        {
+          "id": "q_24",
+          "question": "A user can read emails on a phone but cannot send any. Which protocol is most likely failing?",
+          "options": [
+            "IMAP",
+            "SMTP",
+            "POP3",
+            "DNS"
+          ],
+          "correctAnswer": 1,
+          "explanation": "SMTP is used to send mail. IMAP and POP3 only retrieve mail, and they are working since the user can read messages."
+        },
+        {
+          "id": "q_25",
+          "question": "Guests connecting to office Wi-Fi get addresses like 169.254.12.7 and cannot reach the internet. What is the most likely cause?",
+          "options": [
+            "The DNS server is returning wrong records",
+            "The DHCP server is unreachable or not responding, so devices assigned themselves APIPA addresses",
+            "The router has run out of public IPv4 addresses",
+            "The guests' devices have duplicate MAC addresses"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Addresses in 169.254.0.0/16 are APIPA addresses that a device gives itself when it cannot get a lease from DHCP."
+        },
+        {
+          "id": "q_26",
+          "question": "An administrator must securely manage a remote Linux server from home over the internet. Which protocol is the right choice?",
+          "options": [
+            "Telnet (port 23)",
+            "SSH (port 22)",
+            "FTP (port 21)",
+            "HTTP (port 80)"
+          ],
+          "correctAnswer": 1,
+          "explanation": "SSH encrypts remote command-line sessions. Telnet, FTP and HTTP send data, including credentials, unencrypted."
+        },
+        {
+          "id": "q_27",
+          "question": "Two departments are on different subnets, 192.168.1.0/24 and 192.168.2.0/24, and need to communicate. Which device is required?",
+          "options": [
+            "A router (or Layer 3 switch)",
+            "A hub",
+            "A repeater",
+            "A Layer 2 switch alone"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Traffic between different IP subnets must be routed, which is done at Layer 3. Hubs, repeaters and Layer 2 switches do not route between subnets."
+        },
+        {
+          "id": "q_28",
+          "question": "An online multiplayer game needs very fast updates and can tolerate the occasional lost packet. Which transport protocol suits it best?",
+          "options": [
+            "TCP, because it retransmits lost data without causing delay",
+            "ICMP, because it measures latency",
+            "FTP, because it transfers files reliably",
+            "UDP, because it has low overhead and does not wait to retransmit lost packets"
+          ],
+          "correctAnswer": 3,
+          "explanation": "UDP is connectionless and fast, ideal for real-time data. TCP's retransmissions and ordering add delay, which hurts real-time play."
+        }
+      ]
+    },
+    {
+      "id": "sec_4",
+      "name": "Cloud Computing",
+      "questions": [
+        {
+          "id": "q_29",
+          "question": "A company wants employees to use a hosted CRM through a web browser, with no servers, operating systems or software to maintain. Which cloud service model is this?",
+          "options": [
+            "IaaS",
+            "PaaS",
+            "SaaS",
+            "Colocation"
+          ],
+          "correctAnswer": 2,
+          "explanation": "In SaaS the provider manages everything from infrastructure to application, and users only use the software."
+        },
+        {
+          "id": "q_30",
+          "question": "A startup needs powerful servers only 2 hours a day for testing and wants to stop paying when they are switched off. Which approach supports this?",
+          "options": [
+            "Buying servers outright (CapEx)",
+            "A three-year reserved commitment",
+            "Pay-as-you-go (metered) billing with on-demand resources",
+            "A dedicated physical hosting contract"
+          ],
+          "correctAnswer": 2,
+          "explanation": "On-demand, metered cloud resources charge only for the time used. Purchases and long commitments cost money while the servers sit idle."
+        },
+        {
+          "id": "q_31",
+          "question": "Under the shared responsibility model, a company using a SaaS email service is still responsible for which of the following?",
+          "options": [
+            "Patching the provider's servers",
+            "Its own data and user access, such as accounts, passwords and MFA",
+            "Physical security of the data centers",
+            "Maintaining the application code"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The provider handles infrastructure and the application. Customers stay responsible for their data and who can access it."
+        },
+        {
+          "id": "q_32",
+          "question": "A government agency wants cloud benefits but needs infrastructure dedicated to its own use only. Which deployment model fits?",
+          "options": [
+            "Public cloud",
+            "Private cloud",
+            "Community cloud",
+            "Hybrid cloud"
+          ],
+          "correctAnswer": 1,
+          "explanation": "A private cloud is dedicated to a single organization. Public clouds are shared, and community clouds are shared among several organizations. Hybrid mixes private and public."
+        },
+        {
+          "id": "q_33",
+          "question": "A cloud provider's SLA promises 99.9% availability. Roughly how much downtime per year does this allow?",
+          "options": [
+            "About 52 minutes",
+            "About 3.65 days",
+            "About 8.8 hours",
+            "About 5 minutes"
+          ],
+          "correctAnswer": 2,
+          "explanation": "0.1% of a year (8,760 hours) is about 8.76 hours. 99.99% allows about 52 minutes and 99% allows about 3.65 days."
+        }
+      ]
+    },
+    {
+      "id": "sec_5",
+      "name": "Cybersecurity",
+      "questions": [
+        {
+          "id": "q_34",
+          "question": "An employee receives an email that appears to be from IT, saying the mailbox is full and asking them to click a link and enter their password. What should the employee do?",
+          "options": [
+            "Click the link and enter the password to avoid being locked out",
+            "Not click the link, and report the email to the security team as phishing",
+            "Reply asking for more information",
+            "Forward the email to colleagues"
+          ],
+          "correctAnswer": 1,
+          "explanation": "This is a classic phishing attempt. Do not interact with it, and report it so the security team can warn others and block it."
+        },
+        {
+          "id": "q_35",
+          "question": "A website must let users log in but must never be able to see or recover their original passwords, even if the database leaks. What should it store?",
+          "options": [
+            "Salted hashes created with a slow algorithm such as bcrypt",
+            "Passwords encrypted with AES using one shared key",
+            "Passwords encoded in Base64",
+            "Passwords in plain text in a protected table"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Hashes are one-way, and salting plus a slow algorithm resists cracking. Encryption can be reversed with the key, and Base64 is just encoding."
+        },
+        {
+          "id": "q_36",
+          "question": "An attacker intercepts a payment request and changes the amount before it reaches the bank. Which CIA triad property is violated?",
+          "options": [
+            "Integrity",
+            "Confidentiality",
+            "Availability",
+            "Accountability"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Integrity means data is not altered by unauthorized parties. The data was modified in transit, which violates integrity."
+        },
+        {
+          "id": "q_37",
+          "question": "Files on several office PCs are encrypted and a note demands payment. Which measure lets the company recover best without paying?",
+          "options": [
+            "A stronger screen-lock password",
+            "A faster internet connection",
+            "Disabling antivirus to avoid conflicts",
+            "Regular offline or immutable backups that are tested"
+          ],
+          "correctAnswer": 3,
+          "explanation": "Tested offline or immutable backups allow restoring clean data after ransomware. The other options do not help recovery."
+        },
+        {
+          "id": "q_38",
+          "question": "A security team wants a device that not only detects suspicious network traffic but also blocks it automatically. What should they deploy?",
+          "options": [
+            "An Intrusion Detection System (IDS) alone",
+            "A network hub",
+            "An Intrusion Prevention System (IPS)",
+            "A DHCP server"
+          ],
+          "correctAnswer": 2,
+          "explanation": "An IPS sits inline and blocks threats. An IDS only detects and alerts."
+        }
+      ]
+    },
+    {
+      "id": "sec_6",
+      "name": "Databases, OS & Software Practices",
+      "questions": [
+        {
+          "id": "q_39",
+          "question": "The Employees table has columns (id, name, dept, salary). Which query lists the departments that have more than 5 employees?",
+          "options": [
+            "SELECT dept, COUNT(*) FROM Employees WHERE COUNT(*) > 5 GROUP BY dept;",
+            "SELECT dept FROM Employees HAVING COUNT(*) > 5;",
+            "SELECT dept, COUNT(*) FROM Employees GROUP BY dept HAVING COUNT(*) > 5;",
+            "SELECT COUNT(dept) > 5 FROM Employees;"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Aggregate conditions are applied with HAVING after GROUP BY. WHERE cannot use aggregate functions, and the other queries are invalid or do not return departments."
+        },
+        {
+          "id": "q_40",
+          "question": "Customers(cust_id, name) and Orders(order_id, cust_id) are tables. A manager wants every customer listed, including those who never placed an order. Which join is correct?",
+          "options": [
+            "Customers LEFT JOIN Orders ON Customers.cust_id = Orders.cust_id",
+            "Customers INNER JOIN Orders ON Customers.cust_id = Orders.cust_id",
+            "Customers CROSS JOIN Orders",
+            "Orders LEFT JOIN Customers ON Customers.cust_id = Orders.cust_id"
+          ],
+          "correctAnswer": 0,
+          "explanation": "LEFT JOIN keeps all rows from the left table (Customers) with NULLs where no order exists. INNER JOIN drops customers without orders, and the reversed LEFT JOIN keeps all orders instead."
+        },
+        {
+          "id": "q_41",
+          "question": "A table Enrollment(roll_no, course_id, student_name, grade) has the primary key (roll_no, course_id), but student_name depends only on roll_no. Which normal form is violated and what is the fix?",
+          "options": [
+            "1NF is violated; split grade into two columns",
+            "3NF is violated; delete student_name",
+            "No normal form is violated, so no change is needed",
+            "2NF is violated; move student_name into a separate Student table keyed by roll_no"
+          ],
+          "correctAnswer": 3,
+          "explanation": "A column depending on only part of a composite key is a partial dependency, which breaks 2NF. Moving it to a table keyed by roll_no removes the redundancy."
+        },
+        {
+          "id": "q_42",
+          "question": "During a bank transfer the debit succeeds but the credit fails, so the database undoes the debit. Which ACID property ensures this?",
+          "options": [
+            "Consistency",
+            "Atomicity",
+            "Isolation",
+            "Durability"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Atomicity means a transaction is all-or-nothing. If any part fails, the whole transaction is rolled back."
+        },
+        {
+          "id": "q_43",
+          "question": "Process P1 holds resource A and waits for resource B, while process P2 holds B and waits for A. Neither can proceed. What is this situation called?",
+          "options": [
+            "Starvation",
+            "Deadlock",
+            "Thrashing",
+            "Context switching"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Processes waiting on each other in a circular wait, each holding a resource the other needs, form a deadlock."
+        },
+        {
+          "id": "q_44",
+          "question": "A laptop runs many programs and its RAM is almost full, yet programs keep running because the OS temporarily uses part of the disk as extra memory. What is this technique called?",
+          "options": [
+            "Cache memory",
+            "Virtual memory (paging or swapping)",
+            "Spooling",
+            "Disk defragmentation"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Virtual memory lets the OS extend RAM using disk space by moving pages in and out. Cache is faster memory near the CPU and spooling queues jobs for devices."
+        },
+        {
+          "id": "q_45",
+          "question": "A team delivers small working increments every two weeks, holds daily stand-ups and adapts to changing requirements. Which methodology is this?",
+          "options": [
+            "Agile (Scrum)",
+            "Waterfall",
+            "V-Model",
+            "Big-bang integration"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Short iterations (sprints), daily stand-ups and adaptation to change are characteristics of Agile and Scrum. Waterfall and the V-Model are sequential."
+        }
+      ]
+    }
+  ]
+}
