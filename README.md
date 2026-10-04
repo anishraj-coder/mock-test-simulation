@@ -107,4 +107,4 @@ The simulator supports both section-based tests and simple flat question lists:
 }
 ```
 
-> **Flexible Answer Parsing**: `correctAnswer` can be specified as a 0-based index (`0, 1, 2`), 1-based index (`1, 2, 3`), or letter string (`"A"`, `"B"`, `"C"`, `"D"`).
+> **Flexible Answer Parsing**: `correctAnswer` can be specified as a 0-based index (`0, 1, 2`), 1-based index (`1, 2, 3`), or letter string (`"A"`, `"B"`, `"C"`, `"D"`). 
