@@ -3,7 +3,7 @@
  * Orchestrates test loading, lifecycle events, keyboard shortcuts, and exam state
  */
 
-import { SAMPLE_TESTS, SAMPLE_TEMPLATE_JSON } from './data.js';
+import { SAMPLE_TESTS, SAMPLE_TEMPLATE_JSON, loadDynamicTests } from './data.js';
 import { parseTestJson, parsePlainTextToTest } from './parser.js';
 import { examState, QUESTION_STATUS } from './state.js';
 import { ExamTimer } from './timer.js';
@@ -19,22 +19,32 @@ class MockExamApp {
     this.latestResults = null;
   }
 
-  init() {
+  async init() {
     this.setupTimer();
     this.setupSecurity();
-    this.renderSampleTests();
     this.bindGlobalEvents();
     this.bindExamControls();
     this.bindModals();
     this.bindFileUploads();
     this.bindKeyboardShortcuts();
 
-    // Default select first sample test
-    if (SAMPLE_TESTS.length > 0) {
-      this.selectTest(SAMPLE_TESTS[0]);
+    UI.showView('view-setup');
+
+    const listEl = document.getElementById('sampleTestsList');
+    if (listEl) {
+      listEl.innerHTML = `<div style="padding:1rem; color:#64748b; font-size:0.85rem;">Scanning test repository...</div>`;
     }
 
-    UI.showView('view-setup');
+    try {
+      const dynamicTests = await loadDynamicTests();
+      if (dynamicTests && dynamicTests.length > 0) {
+        this.renderSampleTests();
+        this.selectTest(dynamicTests[0]);
+      }
+    } catch (err) {
+      console.error("Error loading dynamic tests:", err);
+      this.renderSampleTests();
+    }
   }
 
   setupTimer() {

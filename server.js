@@ -18,6 +18,26 @@ const MIME_TYPES = {
 
 const server = http.createServer((req, res) => {
   let reqPath = decodeURI(req.url.split('?')[0]);
+
+  // Dynamic endpoint to list test files in sample_test_accenture
+  if (reqPath === '/api/tests') {
+    const testDir = path.join(__dirname, 'sample_test_accenture');
+    fs.readdir(testDir, (err, files) => {
+      if (err) {
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: err.message }));
+        return;
+      }
+      const jsonFiles = files.filter(f => f.endsWith('.json') && f !== 'manifest.json');
+      res.writeHead(200, {
+        'Content-Type': 'application/json; charset=utf-8',
+        'Cache-Control': 'no-cache'
+      });
+      res.end(JSON.stringify(jsonFiles));
+    });
+    return;
+  }
+
   if (reqPath === '/' || reqPath === '') reqPath = '/index.html';
 
   const fullPath = path.join(__dirname, reqPath);
